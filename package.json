@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "knex": "^0.21.1",
     "qrcode-terminal": "^0.12.0",
+    "sqlite3": "^4.2.0",
     "whatsapp-web.js": "^1.6.1"
   }
 }
