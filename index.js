@@ -8,11 +8,37 @@ const client = new Client();
 function conversationPath (message, msg, user) {
 	switch (user.step) {
 		case "Início":
-			if (msg === "1" || msg === 1) {
-				message.reply("Ok, anotei aqui que você pediu macarrão! Uma excelente escolha. \n Você pode me passar seu endereço?")
+			regex = /macarr.o|Macarr.o | 1/g
+			mensagem = msg.search(regex)
+
+			if (mensagem != -1) {
+				message.reply("Ok, anotei aqui que você pediu macarrão a bolonhesa! Uma excelente escolha. \n Você pode me passar seu endereço?")
 				user.step = "Endereço"
 				database.updateUser(user)
+				break;
 			}
+
+			regex = /Frango|frango | 2/g
+			mensagem = msg.search(regex)
+
+			if (mensagem != -1) {
+				message.reply("Ok, anotei aqui que você pediu frango frito! Uma excelente escolha. \n Você pode me passar seu endereço?")
+				user.step = "Endereço"
+				database.updateUser(user)
+				break;
+			}
+
+			regex = /omelete|Omelete | 3/g
+			mensagem = msg.search(regex)
+
+			if (mensagem != -1) {
+				message.reply("Ok, anotei aqui que você pediu Omelete! Uma excelente escolha. \n Você pode me passar seu endereço?")
+				user.step = "Endereço"
+				database.updateUser(user)
+				break;
+			}
+
+			message.reply("OH caralho, é um dos 3 itens da lista")
 			break;
 
 		case "Endereço":
@@ -42,8 +68,6 @@ function conversationPath (message, msg, user) {
 		default:
 			break;
 	}
-
-
 } 
 
 
@@ -68,7 +92,7 @@ async function allTheActions(message) {
 
 	} else if (message.body.startsWith('!pedido')) {
 
-		const user = await database.searchByChatId(message.from);
+		const user = await database.searchByChatId(lkjljklkljkljklkjljkljkljkmessage.from);
 
 		msg = message.body
 		msg = msg.split('!pedido ')
